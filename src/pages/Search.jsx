@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
+import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
 class Search extends Component {
   state = {
+    artist: '',
     isDisabled: true,
   }
 
@@ -12,6 +14,12 @@ class Search extends Component {
       [name]: value,
       isDisabled: value.length < valueMinName,
     });
+  }
+
+  handleClick = async () => {
+    const { artist } = this.state;
+    const aa = await searchAlbumsAPI(artist);
+    console.log(aa);
   }
 
   render() {
@@ -36,6 +44,7 @@ class Search extends Component {
           value="Pesquisar"
           disabled={ isDisabled }
           data-testid="search-artist-button"
+          onClick={ this.handleClick }
         />
       </div>
     );
