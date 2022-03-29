@@ -16,7 +16,6 @@ class Album extends Component {
     this.setState({
       musics,
     });
-    console.log(musics);
   }
 
   render() {
@@ -41,8 +40,7 @@ class Album extends Component {
               </div>
             ) : <MusicCard
               key={ element.trackId }
-              trackName={ element.trackName }
-              previewUrl={ element.previewUrl }
+              musics={ element }
             />
           ))}
         </div>
