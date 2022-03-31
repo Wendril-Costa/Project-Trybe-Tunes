@@ -3,23 +3,28 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   state = {
     musics: [],
+    favoriteSong: [],
   }
 
   componentDidMount = async () => {
     const { match: { params: { id } } } = this.props;
-    const idNumber = (id);
-    const musics = await getMusics(idNumber);
+    const musics = await getMusics(id);
+    const favoriteSong = await getFavoriteSongs();
     this.setState({
       musics,
+      favoriteSong,
     });
+    console.log(favoriteSong);
   }
 
   render() {
-    const { musics } = this.state;
+    const { musics, favoriteSong } = this.state;
+    console.log(favoriteSong);
     return (
       <div data-testid="page-album">
         <Header />

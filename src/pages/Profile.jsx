@@ -10,7 +10,7 @@ class Profile extends Component {
     email: '',
     description: '',
     image: '',
-    loading: true,
+    loading: false,
   };
 
   componentDidMount = async () => {
@@ -22,7 +22,6 @@ class Profile extends Component {
       image: user.image,
       loading: false,
     });
-    console.log(user);
   }
 
   render() {

@@ -9,7 +9,7 @@ class MusicCard extends Component {
     isChecked: false,
   }
 
-  handleChange = async () => {
+  handleClick = async () => {
     this.setState({
       loading: true,
     });
@@ -18,6 +18,12 @@ class MusicCard extends Component {
     this.setState({
       loading: false,
       isChecked: true,
+    });
+  }
+
+  handleChange = ({ target: { name, checked } }) => {
+    this.setState({
+      [name]: checked,
     });
   }
 
@@ -43,6 +49,7 @@ class MusicCard extends Component {
                   type="checkbox"
                   checked={ isChecked }
                   onChange={ this.handleChange }
+                  onClick={ this.handleClick }
                   data-testid={ `checkbox-music-${musics.trackId}` }
                 />
               </label>
