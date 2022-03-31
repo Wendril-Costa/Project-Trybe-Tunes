@@ -19,14 +19,13 @@ class ProfileEdit extends Component {
       description: user.description,
       image: user.image,
       loading: false,
-    });
+    }, this.enableButton);
   }
 
   handleChange = ({ target: { name, value } }) => {
     this.setState({
       [name]: value,
-    });
-    this.enableButton();
+    }, this.enableButton);
   }
 
   updateUserAPI = async () => {
@@ -53,6 +52,10 @@ class ProfileEdit extends Component {
     if (complet) {
       this.setState({
         isDisabled: false,
+      });
+    } else {
+      this.setState({
+        isDisabled: true,
       });
     }
   }
