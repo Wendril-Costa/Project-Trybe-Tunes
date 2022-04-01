@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class MusicCard extends Component {
@@ -9,7 +9,23 @@ class MusicCard extends Component {
     isChecked: false,
   }
 
-  handleClick = async () => {
+  handleChange = async ({ target: { name, checked } }) => {
+    const { isChecked } = this.state;
+    const { musics } = this.props;
+    this.setState({
+      [name]: checked,
+    });
+    await this.addClick();
+    if (isChecked) {
+      await removeSong(musics);
+      this.setState({
+        loading: false,
+        isChecked: false,
+      });
+    }
+  }
+
+  addClick = async () => {
     this.setState({
       loading: true,
     });
@@ -21,11 +37,9 @@ class MusicCard extends Component {
     });
   }
 
-  handleChange = ({ target: { name, checked } }) => {
-    this.setState({
-      [name]: checked,
-    });
-  }
+  // clickRemove = async () => {
+
+  // }
 
   render() {
     const { musics } = this.props;
@@ -49,7 +63,6 @@ class MusicCard extends Component {
                   type="checkbox"
                   checked={ isChecked }
                   onChange={ this.handleChange }
-                  onClick={ this.handleClick }
                   data-testid={ `checkbox-music-${musics.trackId}` }
                 />
               </label>

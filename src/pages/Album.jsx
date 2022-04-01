@@ -19,12 +19,10 @@ class Album extends Component {
       musics,
       favoriteSong,
     });
-    console.log(favoriteSong);
   }
 
   render() {
     const { musics, favoriteSong } = this.state;
-    console.log(favoriteSong);
     return (
       <div data-testid="page-album">
         <Header />
