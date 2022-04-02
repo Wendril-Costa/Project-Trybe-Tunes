@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
-import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+// import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Favorites extends Component {
-    state={
-      favoriteSong: [],
-    }
+  //   state={
+  //     favoriteSong: [],
+  //   }
 
-  componentDidMount = async () => {
-    const favoriteSong = await getFavoriteSongs();
-    console.log(favoriteSong);
-  }
+  // componentDidMount = async () => {
+  //   const favoriteSong = await getFavoriteSongs();
+  //   console.log(favoriteSong);
+  // }
 
   render() {
     return (
